@@ -2,27 +2,27 @@
 import FilterTypeShip from "./FilterTypeShip";
 import ModalShip from "./ModalShip";
 import CardShip from "./CardShip";
+import { useContext, useEffect, useState } from "react";
+import { ShipContext } from "@/context/ShipContext";
 
 const Ship = () => {
+    const { IsDataShip, IsDataSkin }: any = useContext(ShipContext);
     return (
         <>
             <FilterTypeShip />
             <main className="flex gap-4 p-2">
-                <CardShip
-                    id={50401}
-                    src="https://raw.githubusercontent.com/Fernando2603/AzurLane/main/images/skins/504010/shipyard.png"
-                    NameShip="Huan Ch'ang"
-                    star={6}
-                    Rarity={5}
-                />
-                <ModalShip/>
-                <CardShip
-                    id={10517}
-                    src="https://raw.githubusercontent.com/Fernando2603/AzurLane/main/images/skins/105170/shipyard.png"
-                    NameShip="New Jersey"
-                    star={6}
-                    Rarity={6}
-                />
+                {IsDataShip && (
+                    <div>
+                        <CardShip
+                            id={IsDataShip.gid}
+                            src={IsDataSkin[0].shipyard}
+                            NameShip={IsDataShip.name}
+                            star={6}
+                            Rarity={5}
+                        />
+                        <ModalShip id={IsDataShip.gid} name={IsDataShip.name} skins={IsDataSkin} />
+                    </div>
+                )}
             </main>
         </>
     );

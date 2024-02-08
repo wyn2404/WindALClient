@@ -1,4 +1,5 @@
 "use client";
+import { FetchShip } from "@/utils/FetchSkinGraphql";
 import React, {
     Dispatch,
     SetStateAction,
@@ -10,19 +11,32 @@ import React, {
 interface ShipContextType {
     IsOpenModal: boolean;
     setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-    IsIdShip: number;
-    setIsIdShip: Dispatch<SetStateAction<number>>;
-    IsIdSkin: number;
-    setIsIdSkin: Dispatch<SetStateAction<number>>;
+    IsDataShip: {};
+    setIsDataShip: Dispatch<SetStateAction<DataShipType>>;
+    IsDataSkin: {};
+    setIsDataSkin: Dispatch<SetStateAction<DataSkinType[]>>;
 }
+
+export interface DataSkinType {
+    id: number;
+    name: string;
+    painting: string;
+    icon: string;
+    desc: string;
+}
+interface DataShipType {
+    gid: number,
+    name: string
+}
+
 
 export const ShipContext = createContext<ShipContextType>({
     IsOpenModal: false,
     setIsOpenModal: () => true,
-    IsIdShip: 0,
-    setIsIdShip: () => 0,
-    IsIdSkin: 0,
-    setIsIdSkin: () => 0,
+    IsDataShip: {},
+    setIsDataShip: () => {},
+    IsDataSkin: {},
+    setIsDataSkin: () => [],
 });
 
 export default function ShipProvider({
@@ -30,20 +44,43 @@ export default function ShipProvider({
 }: {
     children: React.ReactNode;
 }) {
-    const [IsOpenModal, setIsOpenModal] = useState<boolean>(false);
-    const [IsIdShip, setIsIdShip] = useState<number>(0);
-    const [IsIdSkin, setIsIdSkin] = useState<number>(0);
     useEffect(() => {
-        if (IsIdShip !== 0) {
+        const DataSkin = async () => {
+            const data: any = await FetchShip();
+            setIsDataSkin(data.data.Ship.Skins);
+            setIsDataShip(data.data.Ship.AboutShip);
+        };
+        DataSkin();
+    }, []);
+    const [IsOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [IsDataShip, setIsDataShip] = useState<DataShipType>({
+        gid: 0,
+        name: ""
+    });
+    const [IsDataSkin, setIsDataSkin] = useState<DataSkinType[]>([
+        {
+            id: 0,
+            name: "",
+            painting: "",
+            icon: "",
+            desc: "",
+        },
+    ]);
+    useEffect(() => {
+        if (IsDataShip.gid !== 0 && IsOpenModal === true) {
             setIsOpenModal(true);
         }
-    }, [IsIdShip]);
-    useEffect(() => {
-        
-    }, [IsIdSkin])
+    }, [IsDataShip, IsOpenModal]);
     return (
         <ShipContext.Provider
-            value={{ IsOpenModal, setIsOpenModal, IsIdShip, setIsIdShip, IsIdSkin, setIsIdSkin }}
+            value={{
+                IsOpenModal,
+                setIsOpenModal,
+                IsDataShip,
+                setIsDataShip,
+                IsDataSkin,
+                setIsDataSkin,
+            }}
         >
             {children}
         </ShipContext.Provider>
