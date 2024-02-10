@@ -5,23 +5,15 @@ const NavBar = () => {
     return (
         <nav className="flex justify-between backdrop-blur-lg fixed left-0 w-full z-50 top-0 p-1 border-[#e27589] border-b-2">
             <div className="flex">
-                <Image
-                    width={54}
-                    height={48}
-                    src="/yae-miko2.png"
-                    alt="logo-keqing"
-                    className="rounded"
-                />
-                <span className="font-family-patrick text-[#e27589] text-[25px] py-2">
-                    WindAL
-                </span>
+                <Link href={"/"}>
+                    <span className="font-family-patrick text-[#e27589] text-[30px] py-1">
+                        WindAL
+                    </span>
+                </Link>
             </div>
             <div className="flex items-center text-[#e27589] font-normal text-lg gap-6 Mobile">
                 <Link href={"/wallpaper"} className="hover:text-[#d16276]">
                     Wallpaper
-                </Link>
-                <Link href={"/skin"} className="hover:text-[#d16276]">
-                    Skin
                 </Link>
                 <Link href={"/event"} className="hover:text-[#d16276]">
                     Event

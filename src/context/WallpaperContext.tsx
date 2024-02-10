@@ -7,6 +7,7 @@ import React, {
     useState,
 } from "react";
 
+import { motion } from "framer-motion";
 interface WallpaperType {
     IsWallpaper: WallpaperStateType[];
     setIsWallpaper: Dispatch<SetStateAction<WallpaperStateType[]>>;
@@ -49,6 +50,7 @@ export default function WallpaperProvider({
     }, []);
     return (
         <WallpaperContext.Provider value={{ IsWallpaper, setIsWallpaper }}>
+            
             {children}
         </WallpaperContext.Provider>
     );

@@ -2,7 +2,6 @@
 import { DataSkinType, ShipContext } from "@/context/ShipContext";
 import Image from "next/image";
 import { useContext } from "react";
-
 interface Prop {
     id: number;
     name: string;
@@ -17,7 +16,8 @@ interface Prop {
 }
 
 const ModalShip = (Prop: Prop) => {
-    const { IsOpenModal, setIsOpenModal, IsDataSkin }: any = useContext(ShipContext);
+    const { IsOpenModal, setIsOpenModal, IsDataSkin }: any =
+        useContext(ShipContext);
     return (
         <>
             <div
@@ -87,7 +87,9 @@ const ModalShip = (Prop: Prop) => {
                                     alt={item.name}
                                 />
                                 <div className="px-6 py-4">
-                                    <div className="font-bold text-xl mb-2 text-white"></div>
+                                    <div className="font-bold text-xl mb-2 text-white">
+                                        {item.name}
+                                    </div>
                                     <p className="text-white text-base">
                                         {item.desc}
                                     </p>

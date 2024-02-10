@@ -19,7 +19,7 @@ const CardShip = (Prop: Props) => {
     if (IsDataShip.gid !== 0 && IsDataSkin[0].shipyard) {
         return (
             <div
-                className={`flex items-center flex-col bg-[#212121] w-[192px] rounded Rarity-${Prop.Rarity}`}
+                className={`flex items-center flex-col bg-[#212121] w-[192px] rounded Rarity-${Prop.Rarity} transition duration-500 hover:scale-105 transform`}
                 onClick={() => {
                     setIsDataShip({
                         gid: IsDataShip.gid,

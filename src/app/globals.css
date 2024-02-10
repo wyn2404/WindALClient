@@ -32,33 +32,30 @@ body {
     background-color: #a8bbbf;
 }
 .Rarity-6 {
-  background: linear-gradient(120deg,#fbffca,#baffbf,#a7efff,#ffabff);
+    background: linear-gradient(120deg, #fbffca, #baffbf, #a7efff, #ffabff);
 }
 .Rarity-5 {
     background: #ee9;
 }
-.cropped {
-    width: 150px; /* width of container */
-    height: 150px; /* height of container */
-    overflow: hidden;
-    border: 5px solid black;
-}
-
-.cropped img {
-    margin: -10px 0px 0px -180px;
-}
-.object-position-none {
-    object-position: 0 0;
+.bg-image {
+    background-image: url("https://azurlane.netojuu.com/images/f/f5/BG_2022.11.17_1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .limited {
-    color: #EF382D;
+    color: #ef382d;
 }
 .free {
-    color: #56BB3B;
+    color: #56bb3b;
 }
 
 @media only screen and (max-width: 768px) {
     .Mobile {
         display: none;
     }
+}
+.btn {
+    @apply text-lg bg-[#008542] text-white inline-flex items-center justify-center relative z-[1] select-none cursor-pointer uppercase tracking-[1px] no-underline font-black transition-all duration-[0.7s] ease-[cubic-bezier(0,0.8,0.26,0.99)] px-6 py-[0.8rem] border-0 before:absolute before:pointer-events-none before:block before:w-full before:h-full before:content-[""] before:transition-[0.7s] before:duration-[cubic-bezier(0,0.8,0.26,0.99)] before:z-[-1] before:bg-[#008542] before:shadow-[0_-4px_rgb(21_108_0_/_50%)_inset,0_4px_rgb(100_253_31_/_99%)_inset,-4px_0_rgb(100_253_31_/_50%)_inset,4px_0_rgb(21_108_0_/_50%)_inset] before:left-0 before:top-0 after:absolute after:pointer-events-none after:block after:w-full after:h-full after:content-[""] after:shadow-[0_4px_0_0_rgb(0_0_0_/_15%)] after:transition-[0.7s] after:duration-[cubic-bezier(0,0.8,0.26,0.99)] after:left-0 after:top-0 hover:before:shadow-[0_-4px_rgb(0_0_0_/_50%)_inset,0_4px_rgb(255_255_255_/_20%)_inset,-4px_0_rgb(255_255_255_/_20%)_inset,4px_0_rgb(0_0_0_/_50%)_inset] hover:after:shadow-[0_4px_0_0_rgb(0_0_0_/_15%)] active:translate-y-1 active:after:shadow-[0_0px_0_0_rgb(0_0_0_/_15%)];
+    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+    white-space: unset;
 }

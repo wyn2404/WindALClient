@@ -1,36 +1,30 @@
-export const FetchShip = async () => {
-    return await fetch("http://localhost:8080/graphql", {
-        method: "POST",
+import axios from "axios";
+
+export const FetchShip = async ({
+    idShip,
+    query,
+}: {
+    idShip?: number;
+    query: string;
+}) => {
+    return await axios({
+        url: "http://localhost:8080/graphql",
+        method: "post",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
-        body: JSON.stringify({
-            query: `
-            query Query($idShip: Int!) {
-              Ship(IdShip: $idShip) {
-                Skins {
-                    id
-                    name
-                    shipyard
-                    icon
-                    desc
-                    painting
-                }
-                AboutShip {
-                    gid
-                    name
-                }
-              }
-            }
-          `,
+        data: JSON.stringify({
+            query: query,
             variables: {
-                idShip: 30511,
+                idShip: idShip,
             },
         }),
     })
-        .then((res) => res.json())
         .then((data) => {
-            return data;
+            return data.data;
+        })
+        .catch((error) => {
+            return error;
         });
 };

@@ -25,10 +25,9 @@ export interface DataSkinType {
     desc: string;
 }
 interface DataShipType {
-    gid: number,
-    name: string
+    gid: number;
+    name: string;
 }
-
 
 export const ShipContext = createContext<ShipContextType>({
     IsOpenModal: false,
@@ -46,7 +45,24 @@ export default function ShipProvider({
 }) {
     useEffect(() => {
         const DataSkin = async () => {
-            const data: any = await FetchShip();
+            const data: any = await FetchShip({
+                idShip: 10706,
+                query: `query Query($idShip: Int!) {
+                Ship(IdShip: $idShip) {
+                  Skins {
+                    gid
+                    name
+                    desc
+                    painting
+                    icon
+                  }
+                  AboutShip {
+                    gid
+                    name
+                  }
+                }
+              }`,
+            });
             setIsDataSkin(data.data.Ship.Skins);
             setIsDataShip(data.data.Ship.AboutShip);
         };
@@ -55,7 +71,7 @@ export default function ShipProvider({
     const [IsOpenModal, setIsOpenModal] = useState<boolean>(false);
     const [IsDataShip, setIsDataShip] = useState<DataShipType>({
         gid: 0,
-        name: ""
+        name: "",
     });
     const [IsDataSkin, setIsDataSkin] = useState<DataSkinType[]>([
         {
